@@ -7,7 +7,7 @@ import { getCosmWasmClient, getQueryClient } from '@sei-js/core'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import AudioLoading from './components/AudioLoading.vue'
-import { REST_URL, RPC_URL } from './utils/config'
+import { NETWORK, REST_URL, RPC_URL } from './utils/config'
 import BigNumber from 'bignumber.js'
 import clipboard3 from 'vue-clipboard3'
 
@@ -81,8 +81,8 @@ const connectFinWallet = async () => {
         //   }
         // })
 
-        await window.fin.enable('atlantic-2')
-        const offlineSigner = window.fin.getOfflineSigner('atlantic-2')
+        await window.fin.enable(NETWORK)
+        const offlineSigner = window.fin.getOfflineSigner(NETWORK)
         const accounts = await offlineSigner.getAccounts()
         if (Array.isArray(accounts) && accounts.length > 0) {
           account.value = accounts[0].address || ''
@@ -141,8 +141,8 @@ const connectCompassWallet = async () => {
         //   }
         // })
 
-        await window.compass.enable('atlantic-2')
-        const offlineSigner = window.compass.getOfflineSigner('atlantic-2')
+        await window.compass.enable(NETWORK)
+        const offlineSigner = window.compass.getOfflineSigner(NETWORK)
         const accounts = await offlineSigner.getAccounts()
         if (Array.isArray(accounts) && accounts.length > 0) {
           account.value = accounts[0].address || ''
@@ -193,8 +193,8 @@ const connectWallet = async () => {
         //   }
         // })
 
-        await window.keplr.enable('atlantic-2')
-        const offlineSigner = window.getOfflineSigner('atlantic-2')
+        await window.keplr.enable(NETWORK)
+        const offlineSigner = window.getOfflineSigner(NETWORK)
         const accounts = await offlineSigner.getAccounts()
         if (Array.isArray(accounts) && accounts.length > 0) {
           account.value = accounts[0].address || ''
@@ -251,7 +251,7 @@ onMounted(() => {
     <div class="loading" v-if="!hideLoading">
       <AudioLoading style="height: 100%" />
     </div>
-    <div class="topTip" v-if="account">You are on Sei testnet</div>
+    <!-- <div class="topTip" v-if="account">You are on Sei testnet</div> -->
     <div class="header">
       <div class="front">
         <!-- <img src="./assets/images/logo.svg" class="brand-logo" @click="backHome" /> -->
@@ -327,7 +327,7 @@ onMounted(() => {
           </div>
           <div style="display: flex; align-items: center; justify-content: center">
             <a
-              :href="`https://www.seiscan.app/atlantic-2/accounts/${account}/overview`"
+              :href="`https://www.seiscan.app/${NETWORK}/accounts/${account}/overview`"
               target="_blank"
               style="color: #00b2ff; text-decoration: none"
               ><el-icon><Monitor /></el-icon>View on Seican</a

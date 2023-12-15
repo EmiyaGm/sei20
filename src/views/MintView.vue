@@ -7,7 +7,7 @@ import {
   getSigningCosmWasmClient,
 } from '@sei-js/core'
 import { calculateFee } from '@cosmjs/stargate'
-import { RPC_URL } from '../utils/config'
+import { NETWORK, RPC_URL } from '../utils/config'
 
 const props = defineProps<{
   openConnectWallet: Function
@@ -42,15 +42,16 @@ const errorTip = ref('')
 const testFunc = async () => {
   let offlineSigner = null
   if (wallet.value === 'compass') {
-    offlineSigner = window.compass.getOfflineSigner('atlantic-2')
+    offlineSigner = window.compass.getOfflineSigner(NETWORK)
   } else {
-    offlineSigner = window.fin.getOfflineSigner('atlantic-2')
+    offlineSigner = window.fin.getOfflineSigner(NETWORK)
   }
   const msg = {
-    p: 'sei-20',
-    op: 'mint',
+    p: 'sei20',
+    op: 'deploy',
     tick: 'seis',
-    amt: '1000',
+    max: '3628800000000',
+    lim: '1000',
   }
   const msg_base64 = btoa(`data:,${JSON.stringify(msg)}`)
   const fee = calculateFee(100000, '0.1usei')
@@ -179,7 +180,7 @@ const connectWallet = () => {
           <div class="checkOn">
             Check on
             <a
-              :href="`https://www.seiscan.app/atlantic-2/txs/${mintResult.transaction}`"
+              :href="`https://www.seiscan.app/${NETWORK}/txs/${mintResult.transaction}`"
               target="_blank"
               >{{ mintResult.transaction }}</a
             >
@@ -197,7 +198,7 @@ const connectWallet = () => {
         <div class="checkOn">
           {{ errorTip }}
           <a
-            :href="`https://www.seiscan.app/atlantic-2/txs/${mintResult.transaction}`"
+            :href="`https://www.seiscan.app/${NETWORK}/txs/${mintResult.transaction}`"
             target="_blank"
             >{{ mintResult.transaction }}</a
           >
