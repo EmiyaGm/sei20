@@ -47,14 +47,12 @@ const testFunc = async () => {
     offlineSigner = window.fin.getOfflineSigner('atlantic-2')
   }
   const msg = {
-    data: {
-      p: 'sei-20',
-      op: 'mint',
-      tick: 'seis',
-      amt: '1000',
-    },
+    p: 'sei-20',
+    op: 'mint',
+    tick: 'seis',
+    amt: '1000',
   }
-  const msg_base64 = btoa(JSON.stringify(msg))
+  const msg_base64 = btoa(`data:,${JSON.stringify(msg)}`)
   const fee = calculateFee(100000, '0.1usei')
   const signingCosmWasmClient = await getSigningCosmWasmClient(
     RPC_URL,
