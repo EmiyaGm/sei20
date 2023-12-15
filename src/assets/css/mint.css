@@ -1,0 +1,336 @@
+.swapContent {
+  padding: 57px 0px 0px 0px;
+}
+.swapContentOne {
+  height: 250px;
+  margin-bottom: 52px;
+}
+
+.swapContentTwo {
+  /* backdrop-filter: blur(10px); */
+  /* padding: 24px 19px 27px 26px; */
+  position: relative;
+}
+
+.swapContentTwoFirst {
+  padding: 14px 27px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(24px);
+}
+
+.swapContentTwoSecond {
+  padding: 14px 27px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(24px);
+  margin-top: 10px;
+}
+
+.swapLogo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #d9d9d9;
+}
+
+.swapSymbol {
+  margin: 0px 12px;
+  font-size: 20px;
+  color: white;
+}
+
+.swapDivide {
+  width: 2px;
+  height: 27px;
+  margin-right: 14px;
+  margin-left: 20px;
+}
+
+.swapBalanceTip {
+  margin-top: 6px;
+}
+
+.balanceTip {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.swapPercent {
+  margin-top: 20px;
+}
+
+.swapPercent > div {
+  height: 34px;
+  border-radius: 69px;
+  border: 1px solid #90b5ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 96px;
+  font-size: 14px;
+  color: #90b5ea;
+  user-select: none;
+}
+
+.swapIcon {
+  position: absolute;
+  top: 156px;
+  right: calc(50% - 28px);
+  z-index: 1;
+}
+
+.swapIconImage {
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.swapIconImage:hover {
+  transform: rotate(180deg);
+}
+
+.settingIcon {
+  font-size: 36px;
+  color: #D3E3E9;
+}
+
+.swapButtonDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.noAddressIcon {
+  margin: 31px;
+  font-size: 33px;
+}
+
+.noAddressTipOne {
+  font-size: 20px;
+}
+
+.noAddressTipTwo {
+  font-size: 14px;
+}
+
+.noAddressArrow {
+  font-size: 33px;
+}
+
+.swapInputItem {
+  height: 63.149px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.51);
+  padding: 12px 26px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.swapInputItemSelect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.token-list {
+  max-height: 500px;
+  overflow: auto;
+  padding: 20px 0px;
+}
+
+.token-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: Outfit;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.token-item-icon {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+.token-item-name {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 16px;
+}
+
+.swapButton {
+  border-radius: 14px;
+  background: linear-gradient(91deg, #f3c70d 0.17%, #01b0ff 35.05%, #0121ff 98.65%);
+  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(24px);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  height: 56px;
+  border: none;
+  width: 574px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.plainButton {
+  border-radius: 14px;
+  height: 56px;
+  border: 1px solid #fff;
+  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(24px);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  background: transparent;
+  width: 574px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.connectWallet {
+  border-radius: 14px;
+  background: linear-gradient(91deg, #f3c70d 0.17%, #01b0ff 35.05%, #0121ff 98.65%);
+  margin-top: 10px;
+  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(24px);
+  height: 111px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px 38px;
+  color: white;
+  cursor: pointer;
+  width: 574px;
+  user-select: none;
+}
+
+.resultLoadingDiv {
+  margin-bottom: 2px;
+}
+
+.resultLoadingImage {
+  width: 64px;
+  height: 64px;
+}
+
+.resultLoadingText {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  line-height: normal;
+}
+
+.resultLoadingTip {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+  line-height: normal;
+}
+
+.resultDiv {
+  margin-bottom: 10px;
+  display: inline;
+}
+
+.resultImage {
+  width: 78px;
+  height: 78px;
+}
+
+.resultImageTwo {
+  width: 82px;
+  height: 82px;
+}
+
+.resultText {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.checkOn {
+  padding: 20px 36px;
+  font-size: 16px;
+  border-radius: 14px;
+  background: #f1f4f8;
+  word-wrap: break-word;
+}
+
+.rejectTip {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.dissmissButton {
+  display: flex;
+  width: 265px;
+  height: 47px;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 14px;
+  background: #F1F4F8;
+  margin-top: 10px;
+  user-select: none;
+}
+
+.swapNumber {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.13);
+  backdrop-filter: blur(24px);
+  height: 58px;
+  width: 574px;
+  color: #fff;
+  font-family: Outfit;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 29px;
+  padding-right: 32px;
+  margin-top: 10px;
+}
+
+.swapNumberContent {
+  display: flex;
+  align-items: center;
+}
+
+.swapNumberToken {
+  display: flex;
+  align-items: center;
+}
+
+.swapNumberTokenImage {
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+}
+
+.swapNumberEquel {
+  margin-right: 19px;
+  margin-left: 14px;
+}

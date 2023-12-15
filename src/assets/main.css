@@ -1,0 +1,321 @@
+@import './base.css';
+@import './css/mint.css';
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
+  font-family: Outfit !important;
+}
+
+.menuDropdown {
+  font-family: Outfit !important;
+}
+
+.menuContent {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.menuItem {
+  font-size: 15px !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-family: Outfit !important;
+}
+
+.menuItemActive {
+  color: white !important;
+}
+
+.contentDrawer {
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(39px) !important;
+  transform: translateZ(0);
+  box-shadow: none !important;
+  right: 25% !important;
+  height: calc(100vh - 304px) !important;
+  top: 152px !important;
+  bottom: 25px !important;
+  pointer-events: fill;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  transition: none !important;
+  width: 50% !important;
+  left: auto !important;
+}
+
+.el-drawer__body {
+  overflow-x: hidden !important;
+}
+
+.el-drawer__body::-webkit-scrollbar {
+  display: none;
+}
+
+.contentDrawerModal {
+  background-color: transparent !important;
+  pointer-events: none;
+  overflow: hidden !important;
+}
+
+.contentDrawer > .el-drawer__body {
+  padding: 11px 10px;
+}
+
+.gmui-flex {
+  display: flex;
+}
+.gmui-aligin-items-center {
+  align-items: center;
+}
+.gmui-justify-content-space-between {
+  justify-content: space-between;
+}
+
+.el-step__icon {
+  background: transparent !important;
+}
+
+.el-step__line {
+  top: 12px !important;
+  bottom: -12px !important;
+  background-image: url('../assets/images/line.svg');
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+}
+
+.el-menu {
+  background: transparent !important;
+}
+
+.el-menu-header {
+  border: none !important;
+  width: 100%;
+  justify-content: space-around !important;
+  align-items: center;
+}
+
+.el-menu-header > .el-sub-menu > .el-sub-menu__title {
+  border: none !important;
+  font-size: 20px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 400 !important;
+  transition: none !important;
+  background: transparent !important;
+}
+
+.el-menu-header > .el-menu-item {
+  border: none !important;
+  font-size: 20px !important;
+  /* color: rgba(255, 255, 255, 0.90) !important; */
+  font-weight: 400 !important;
+  transition: none !important;
+  background: transparent !important;
+}
+
+.el-menu-header > .el-menu-item:hover {
+  background: transparent !important;
+  outline: none !important;
+}
+
+.el-menu-header > .el-menu-item:active {
+  background: transparent !important;
+  outline: none !important;
+}
+
+.el-drawer-fade-enter-active {
+  transition: none !important;
+}
+
+.el-drawer-fade-leave-active {
+  transition: none !important;
+}
+
+.el-drawer-fade-enter-to {
+  transform: none !important;
+}
+
+.el-drawer-fade-leave-to {
+  transform: none !important;
+}
+
+.titleCircle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.53);
+}
+.titleName {
+  color: #ffc700;
+  font-family: Outfit;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleNameTwo {
+  color: #ffc700;
+  font-family: Outfit;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.main {
+  min-height: calc(100vh - 273px);
+}
+
+.swap-result-dialog {
+  background: linear-gradient(103deg, #fff5d3 -16.39%, #f4f0d8 16.32%, #90bdff 102.96%) !important;
+  border-radius: 22px !important;
+}
+
+.swap-result-dialog > .el-dialog__header {
+  display: none;
+}
+
+.swap-result-dialog > .el-dialog__body {
+  padding-top: 17px !important;
+  padding-bottom: 29px !important;
+}
+
+.account-dialog {
+  background: white !important;
+}
+
+.loading-animation {
+  animation: spin 3s ease infinite;
+}
+
+@keyframes spin {
+  to {
+    /* 旋转一周 */
+    transform: rotate(1turn);
+  }
+}
+
+.demo-tabs > .el-tabs__header {
+  border: none !important;
+}
+
+.demo-tabs > .el-tabs__header > .el-tabs__nav-wrap > .el-tabs__nav-scroll > .el-tabs__nav {
+  border: none !important;
+}
+
+.el-statistic__head{
+  color: white !important;
+}
+
+.el-statistic__content {
+  color: white !important;
+}
+
+.airdrop-statistic > .el-statistic__head {
+  font-size: 16px !important;
+  margin-bottom: 33px !important;
+}
+
+.airdrop-statistic > .el-statistic__content {
+  font-size: 26px !important;
+}
+
+.pool-statistic > .el-statistic__head {
+  font-size: 16px !important;
+  color: rgba(255, 255, 255, 0.60) !important;
+}
+
+.pool-statistic > .el-statistic__content {
+  font-size: 18px !important;
+  color: white !important;
+}
+
+.demo-tabs
+  > .el-tabs__header
+  > .el-tabs__nav-wrap
+  > .el-tabs__nav-scroll
+  > .el-tabs__nav
+  > .el-tabs__item.is-active {
+  border-radius: 7px !important;
+  background: rgba(229, 239, 255, 0.38) !important;
+  color: white !important;
+}
+
+.demo-tabs
+  > .el-tabs__header
+  > .el-tabs__nav-wrap
+  > .el-tabs__nav-scroll
+  > .el-tabs__nav
+  > .el-tabs__item {
+  border: none !important;
+  text-align: center !important;
+  justify-content: left !important;
+  font-size: 16px !important;
+  color: white !important;
+}
+
+.demo-tabs > .el-tabs__content {
+  padding: 0px 33px;
+}
+
+.el-tabs--right .el-tabs__content,
+.el-tabs--left .el-tabs__content {
+  height: 100%;
+}
+
+.el-carousel__indicator > .el-carousel__button {
+  background: #f2f2f2;
+}
+
+.el-carousel__indicator.is-active > .el-carousel__button {
+  background: #00b2ff;
+  box-shadow: 0px 0px 6.1px 0px rgba(0, 178, 255, 0.64);
+}
+
+.el-slider__button {
+  width: 6px !important;
+  height: 6px !important;
+  background: #69a7ff !important;
+  border-radius: 50%;
+}
+
+.el-slider__runway{
+  height: 1px !important;
+  background: #D9D9D9 !important;
+}
+
+.el-slider__button-wrapper{
+  top: -16px !important;
+}
+
+.el-slider__bar{
+  height: 1px !important;
+}
+
+.share-dialog{
+  border-radius: 19px !important;
+  background: linear-gradient(147deg, #011032 3.01%, #0939AC 95.74%) !important;
+}
+
+
+.share-dialog > .el-dialog__header {
+  display: none;
+}
+
+.share-dialog > .el-dialog__body{
+  padding: 0px;
+}
