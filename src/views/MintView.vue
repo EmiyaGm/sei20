@@ -47,11 +47,10 @@ const testFunc = async () => {
     offlineSigner = window.fin.getOfflineSigner(NETWORK)
   }
   const msg = {
-    p: 'sei20',
-    op: 'deploy',
+    p: 'sei-20',
+    op: 'mint',
     tick: 'seis',
-    max: '3628800000000',
-    lim: '1000',
+    amt: '1000',
   }
   const msg_base64 = btoa(`data:,${JSON.stringify(msg)}`)
   const fee = calculateFee(100000, '0.1usei')
