@@ -12,6 +12,7 @@ import {
 } from '@sei-js/core'
 import { calculateFee } from '@cosmjs/stargate'
 import { NETWORK, RPC_URL } from '../utils/config'
+import { event } from 'vue-gtag';
 
 const props = defineProps<{
   openConnectWallet: Function
@@ -62,6 +63,7 @@ const testFunc = async () => {
     RPC_URL,
     offlineSigner,
   )
+  event('mint')
   const response = signingCosmWasmClient.sendTokens(
     address.value,
     address.value,
