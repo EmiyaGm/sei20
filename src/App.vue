@@ -293,6 +293,9 @@ onMounted(() => {
                 <div class="comingMenuItemTip">Coming Soon</div>
               </div>
             </el-menu-item>
+            <el-menu-item index="doc">
+              <a target="_blank" href="https://sei-20.gitbook.io/sei-20/" style="text-decoration: none;">Doc</a>
+            </el-menu-item>
           </el-menu>
         </div>
       </div>
@@ -323,6 +326,15 @@ onMounted(() => {
       <div class="footer-logo">
         @ 2023 sei20.xyz
       </div>
+      <!-- <div class="footer-resources">
+        <div>
+          <a
+            target="_blank"
+            style="color: rgba(255, 255, 255, 0.9); text-decoration: none"
+            >Doc</a
+          >
+        </div>
+      </div> -->
     </div>
     <el-dialog v-model="dialogVisible" title="Choose" width="400" :append-to-body="true" class="connect-wallet-dialog">
       <div>
