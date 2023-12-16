@@ -19,8 +19,7 @@ const list = new Array(15).fill(0);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000F34;
-//   background-image: linear-gradient(to right, #04182c, #000c17, #04182c);
+  background: #2d2d2d;
 
   $height: 80px;
   $gap: 15px;
@@ -39,7 +38,7 @@ const list = new Array(15).fill(0);
         width: 4px;
         height: 20%;
         border-radius: calc($height * 0.2 * 0.5);
-        background-image: linear-gradient(to top, #0085FF 0%, #00F0DB 100%);
+        background-image: linear-gradient(to top, #d299c2 0%, #fef9d7 100%);
         animation: loading 2.5s infinite linear;
         $delay: calc(floor(abs(calc($spanNum / 2 - $i))));
         animation-delay: calc(0.2s * $delay);
@@ -52,19 +51,19 @@ const list = new Array(15).fill(0);
 
     @keyframes loading {
       0% {
-        background-image: linear-gradient(to right, #00F0DB 0%, #0085FF 100%);
+        background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
         height: 20%;
         border-radius: calc($height * 0.2 * 0.5);
       }
 
       50% {
-        background-image: linear-gradient(to top, #0085FF 0%, #00F0DB 100%);
+        background-image: linear-gradient(to top, #d299c2 0%, #fef9d7 100%);
         height: 100%;
         border-radius: calc($height * 1 * 0.5);
       }
 
       100% {
-        background-image: linear-gradient(to top, #00F0DB 0%, #0085FF 100%);
+        background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
         height: 20%;
         border-radius: calc($height * 0.2 * 0.5);
       }

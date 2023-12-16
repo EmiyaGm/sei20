@@ -1,6 +1,6 @@
 /* color palette from <https://github.com/vuejs/theme> */
 @font-face {
-  font-family: "Outfit";
+  font-family: 'Outfit';
   src: url('../assets/fonts/Outfit.ttf');
 }
 
@@ -66,7 +66,59 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: #000F34;
+  background-image: repeating-linear-gradient(
+      107deg,
+      hsla(0, 0%, 5%, 0.15),
+      hsla(0, 0%, 5%, 0.15) 0,
+      transparent 0,
+      transparent 1px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 3px,
+      transparent 0,
+      transparent 4px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 7px
+    ),
+    repeating-linear-gradient(
+      191deg,
+      hsla(0, 0%, 5%, 0.15),
+      hsla(0, 0%, 5%, 0.15) 0,
+      transparent 0,
+      transparent 1px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 3px,
+      transparent 0,
+      transparent 4px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 7px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      hsla(0, 0%, 5%, 0.15),
+      hsla(0, 0%, 5%, 0.15) 0,
+      transparent 0,
+      transparent 1px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 3px,
+      transparent 0,
+      transparent 4px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 7px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      hsla(0, 0%, 5%, 0.15),
+      hsla(0, 0%, 5%, 0.15) 0,
+      transparent 0,
+      transparent 1px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 3px,
+      transparent 0,
+      transparent 4px,
+      hsla(0, 0%, 5%, 0.15) 0,
+      hsla(0, 0%, 5%, 0.15) 7px
+    ),
+    linear-gradient(90deg, #2d2d2d, #2d2d2d);
   transition:
     color 0.5s,
     background-color 0.5s;

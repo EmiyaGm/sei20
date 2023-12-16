@@ -220,6 +220,7 @@
   cursor: pointer;
   width: 574px;
   user-select: none;
+  margin: 0 auto;
 }
 
 .resultLoadingDiv {

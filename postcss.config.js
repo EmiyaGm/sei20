@@ -14,6 +14,15 @@ module.exports = {
     'postcss-pxtorem': {
       rootValue: 192, // 设计稿宽度的1/ 10 例如设计稿按照 1920设计 此处就为192
       propList: ['*', '!border'], // 除 border 外所有px 转 rem
+      exclude: (e) => {
+        if (/components(\\|\/)WaveFont.vue/.test(e)) {
+          return true
+        }
+        if (/components(\\|\/)BirdButton.vue/.test(e)) {
+          return true
+        }
+        return false
+      }
     }
   }
 }

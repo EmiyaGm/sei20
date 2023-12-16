@@ -177,7 +177,7 @@
 }
 
 .main {
-  min-height: calc(100vh - 273px);
+  min-height: calc(100vh - 180px);
 }
 
 .swap-result-dialog {

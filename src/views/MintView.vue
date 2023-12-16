@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import LineCombination from '../components/LineCombination.vue'
+import WaveFont from '@/components/WaveFont.vue'
+import TextAnimation from '@/components/TextAnimation.vue'
+import BirdButton from '@/components/BirdButton.vue'
 import { computed, reactive, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import {
@@ -117,8 +121,11 @@ const connectWallet = () => {
   <div class="main">
     <div class="drawerContent">
       <div class="swapContent">
+        <WaveFont></WaveFont>
+        <TextAnimation></TextAnimation>
+        <LineCombination></LineCombination>
         <div v-if="address" class="swapButtonDiv">
-          <div class="swapButton" @click="doMint">Mint</div>
+          <BirdButton @click="doMint"></BirdButton>
         </div>
         <div v-else class="connectWallet" @click="connectWallet">
           <div style="display: flex; align-items: center">
@@ -279,7 +286,7 @@ const connectWallet = () => {
 }
 .drawerContent {
   margin: 0 auto;
-  width: 574px;
+  padding: 0px 284px;
 }
 
 .el-icon--right {

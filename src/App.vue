@@ -41,6 +41,7 @@ const openAccountSetting = () => {
 const disconnect = () => {
   dialogAccountVisible.value = false
   account.value = ''
+  store.dispatch('user/setAccount', '')
 }
 
 const openConnectWallet = () => {
@@ -254,6 +255,9 @@ onMounted(() => {
     <!-- <div class="topTip" v-if="account">You are on Sei testnet</div> -->
     <div class="header">
       <div class="front">
+        <div class="logo-text">
+          SEI-20
+        </div>
         <!-- <img src="./assets/images/logo.svg" class="brand-logo" @click="backHome" /> -->
         <div class="menu">
           <el-menu
@@ -265,6 +269,30 @@ onMounted(() => {
             text-color="rgba(255, 255, 255, 0.9)"
           >
             <el-menu-item index="mint" @click="goTo('/mint', 'mint')">Mint</el-menu-item>
+            <el-menu-item>
+              <div class="comingMenuItem">
+                <div class="comingMenuItemName">Holders</div>
+                <div class="comingMenuItemTip">Coming Soon</div>
+              </div>
+            </el-menu-item>
+            <el-menu-item>
+              <div class="comingMenuItem">
+                <div class="comingMenuItemName">Market</div>
+                <div class="comingMenuItemTip">Coming Soon</div>
+              </div>
+            </el-menu-item>
+            <el-menu-item>
+              <div class="comingMenuItem">
+                <div class="comingMenuItemName">Explorer</div>
+                <div class="comingMenuItemTip">Coming Soon</div>
+              </div>
+            </el-menu-item>
+            <el-menu-item>
+              <div class="comingMenuItem">
+                <div class="comingMenuItemName">Assets</div>
+                <div class="comingMenuItemTip">Coming Soon</div>
+              </div>
+            </el-menu-item>
           </el-menu>
         </div>
       </div>
@@ -291,6 +319,11 @@ onMounted(() => {
     </div>
     <!-- <canvas ref="bgCanvas" class="bgCanvas"></canvas> -->
     <RouterView :hideLoading="hideLoading" :openConnectWallet="openConnectWallet" />
+    <div class="footer">
+      <div class="footer-logo">
+        @ 2023 sei20.xyz
+      </div>
+    </div>
     <el-dialog v-model="dialogVisible" title="Choose" width="400" :append-to-body="true" class="connect-wallet-dialog">
       <div>
         <div class="wallet-select-item" @click="connectCompassWallet">
@@ -445,6 +478,11 @@ onMounted(() => {
   top: calc(50vh - 80px);
 }
 
+.logo-text{
+  font-size: 32px;
+  font-weight: bold;
+}
+
 @media (min-width: 640px) {
   .front {
     display: flex;
@@ -510,7 +548,7 @@ onMounted(() => {
   align-items: flex-start;
   pointer-events: fill;
   border-top: 2px solid rgba(255, 255, 255, 0.4);
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .footer-logo {
