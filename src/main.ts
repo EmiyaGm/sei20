@@ -18,7 +18,7 @@ app.use(router)
 app.use(store)
 
 app.use(VueGtag, {
-    config: { id: 'G-0DMXH63L5D' }
+    config: { id: 'G-GG24M99JKL' }
   }, router)
 
 app.mount('#app')
