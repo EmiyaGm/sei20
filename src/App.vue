@@ -335,6 +335,18 @@ onMounted(() => {
           >
         </div>
       </div> -->
+      <div>
+        <!-- <div style="color: rgba(255, 255, 255, 0.4)">Community</div> -->
+        <div>
+          <a
+            href="https://twitter.com/Sei20_xyz"
+            target="_blank"
+            style="color: rgba(255, 255, 255, 0.9); text-decoration: none"
+          >
+            Twitter
+          </a>
+        </div>
+      </div>
     </div>
     <el-dialog v-model="dialogVisible" title="Choose" width="400" :append-to-body="true" class="connect-wallet-dialog">
       <div>
