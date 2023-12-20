@@ -293,9 +293,9 @@ onMounted(() => {
                 <div class="comingMenuItemTip">Coming Soon</div>
               </div>
             </el-menu-item>
-            <!-- <el-menu-item index="doc">
+            <el-menu-item index="doc">
               <a target="_blank" href="https://sei-20.gitbook.io/sei-20/" style="text-decoration: none;">Doc</a>
-            </el-menu-item> -->
+            </el-menu-item>
           </el-menu>
         </div>
       </div>
