@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { RouterView } from 'vue-router'
-import { Wallet, CopyDocument, Monitor, ArrowRight } from '@element-plus/icons-vue'
+import {
+  Wallet,
+  CopyDocument,
+  Monitor,
+  ArrowRight,
+  HomeFilled,
+  SwitchButton,
+} from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getCosmWasmClient, getQueryClient } from '@sei-js/core'
 import { useRouter } from 'vue-router'
@@ -53,11 +60,11 @@ const connectFinWallet = async () => {
     ElMessageBox.confirm('Please install fin extension. Continue?', 'Warning', {
       confirmButtonText: 'OK',
       cancelButtonText: 'Cancel',
-      type: 'warning'
+      type: 'warning',
     }).then(() => {
       window.open(
         'https://chrome.google.com/webstore/detail/fin-wallet-for-sei/dbgnhckhnppddckangcjbkjnlddbjkna',
-        '_blank'
+        '_blank',
       )
     })
   } else {
@@ -110,14 +117,18 @@ const connectFinWallet = async () => {
 const connectCompassWallet = async () => {
   // Getting the market summary from the Sei dex module
   if (!window.compass || !window.compass.getOfflineSigner) {
-    ElMessageBox.confirm('Please install compass extension. Continue?', 'Warning', {
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
-      type: 'warning'
-    }).then(() => {
+    ElMessageBox.confirm(
+      'Please install compass extension. Continue?',
+      'Warning',
+      {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      },
+    ).then(() => {
       window.open(
         'https://chrome.google.com/webstore/detail/compass-wallet-for-sei/anokgmphncpekkhclmingpimjmcooifb',
-        '_blank'
+        '_blank',
       )
     })
   } else {
@@ -162,14 +173,18 @@ const connectCompassWallet = async () => {
 
 const connectWallet = async () => {
   if (!window.getOfflineSigner || !window.keplr) {
-    ElMessageBox.confirm('Please install keplr extension. Continue?', 'Warning', {
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
-      type: 'warning'
-    }).then(() => {
+    ElMessageBox.confirm(
+      'Please install keplr extension. Continue?',
+      'Warning',
+      {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+      },
+    ).then(() => {
       window.open(
         'https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap',
-        '_blank'
+        '_blank',
       )
     })
   } else {
@@ -242,9 +257,11 @@ onMounted(() => {
     hideLoading.value = true
   }, 3000)
   document.body.style.setProperty('--el-menu-active-color', '#FFF')
-  document.body.style.setProperty('--el-text-color-placeholder', 'rgba(255, 255, 255, 0.8)')
+  document.body.style.setProperty(
+    '--el-text-color-placeholder',
+    'rgba(255, 255, 255, 0.8)',
+  )
 })
-
 </script>
 
 <template>
@@ -255,9 +272,7 @@ onMounted(() => {
     <!-- <div class="topTip" v-if="account">You are on Sei testnet</div> -->
     <div class="header">
       <div class="front">
-        <div class="logo-text">
-          SEI-20
-        </div>
+        <div class="logo-text">SEI-20</div>
         <!-- <img src="./assets/images/logo.svg" class="brand-logo" @click="backHome" /> -->
         <div class="menu">
           <el-menu
@@ -268,7 +283,9 @@ onMounted(() => {
             active-text-color="#FFC700"
             text-color="rgba(255, 255, 255, 0.9)"
           >
-            <el-menu-item index="mint" @click="goTo('/mint', 'mint')">Mint</el-menu-item>
+            <el-menu-item index="mint" @click="goTo('/mint', 'mint')"
+              >Mint</el-menu-item
+            >
             <el-menu-item>
               <div class="comingMenuItem">
                 <div class="comingMenuItemName">Holders</div>
@@ -294,7 +311,12 @@ onMounted(() => {
               </div>
             </el-menu-item>
             <el-menu-item index="doc">
-              <a target="_blank" href="https://sei-20.gitbook.io/sei-20/" style="text-decoration: none;">Doc</a>
+              <a
+                target="_blank"
+                href="https://sei-20.gitbook.io/sei-20/"
+                style="text-decoration: none"
+                >Doc</a
+              >
             </el-menu-item>
           </el-menu>
         </div>
@@ -314,18 +336,36 @@ onMounted(() => {
       </div> -->
       <div class="account" v-if="account">
         <el-icon><wallet /></el-icon>
-        <div style="cursor: pointer" @click="openAccountSetting">
-          {{ account.substr(0, 5) }}...{{ account.substr(account.length - 6, 6) }}
-        </div>
+        <el-dropdown>
+          <div style="cursor: pointer; color: #000; outline: none">
+            {{ account.substr(0, 5) }}...{{
+              account.substr(account.length - 6, 6)
+            }}
+          </div>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item :icon="HomeFilled"
+                >My Sei20scriptions</el-dropdown-item
+              >
+              <el-dropdown-item :icon="CopyDocument" @click="copy">
+                Copy Address
+              </el-dropdown-item>
+              <el-dropdown-item :icon="SwitchButton" @click="disconnect">Logout</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </div>
-      <div class="connect" @click="openConnectWallet" v-if="!account">Connect</div>
+      <div class="connect" @click="openConnectWallet" v-if="!account">
+        Connect
+      </div>
     </div>
     <!-- <canvas ref="bgCanvas" class="bgCanvas"></canvas> -->
-    <RouterView :hideLoading="hideLoading" :openConnectWallet="openConnectWallet" />
+    <RouterView
+      :hideLoading="hideLoading"
+      :openConnectWallet="openConnectWallet"
+    />
     <div class="footer">
-      <div class="footer-logo">
-        @ 2023 sei20.xyz
-      </div>
+      <div class="footer-logo">@ 2023 sei20.xyz</div>
       <!-- <div class="footer-resources">
         <div>
           <a
@@ -348,7 +388,13 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <el-dialog v-model="dialogVisible" title="Choose" width="400" :append-to-body="true" class="connect-wallet-dialog">
+    <el-dialog
+      v-model="dialogVisible"
+      title="Choose"
+      width="400"
+      :append-to-body="true"
+      class="connect-wallet-dialog"
+    >
       <div>
         <div class="wallet-select-item" @click="connectCompassWallet">
           <img src="./assets/images/compass.jpg" class="wallet-image" />
@@ -375,14 +421,18 @@ onMounted(() => {
           <img src="./assets/images/avatar.png" class="avatar-image" />
         </div>
         <div class="avatar-account">
-          {{ account.substr(0, 5) }}...{{ account.substr(account.length - 6, 6) }}
+          {{ account.substr(0, 5) }}...{{
+            account.substr(account.length - 6, 6)
+          }}
         </div>
         <div class="copy-address">
           <div @click="copy" class="copy-icon">
             <el-icon><CopyDocument /></el-icon>
             Copy Address
           </div>
-          <div style="display: flex; align-items: center; justify-content: center">
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
             <a
               :href="`https://www.seiscan.app/${NETWORK}/accounts/${account}/overview`"
               target="_blank"
@@ -502,7 +552,7 @@ onMounted(() => {
   top: calc(50vh - 80px);
 }
 
-.logo-text{
+.logo-text {
   font-size: 32px;
   font-weight: bold;
 }
@@ -709,11 +759,11 @@ onMounted(() => {
   font-weight: 400;
   line-height: normal;
 }
-.lp-menu-item-icon{
+.lp-menu-item-icon {
   font-size: 7px;
 }
 
-.menu-pools-logo{
+.menu-pools-logo {
   width: 25px;
   height: 20px;
   margin-right: 10px;
