@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router"
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
@@ -11,6 +12,17 @@ const props = defineProps<{
 const goTo = (url: string) => {
   router.push(url)
 }
+
+const result = ref({
+  code: 0,
+  data: {
+    total_transaction: 323567,
+    total_holders: 5432,
+    total_ticks: 23,
+    total_volumn: 1000000, // 第一期为0
+  },
+  message: '', // 如果code不为0会返回错误信息。
+})
 </script>
 
 <template>
@@ -19,19 +31,19 @@ const goTo = (url: string) => {
       <el-row>
         <el-col class="leftPart" :span="6">
           <div class="dataItem">
-            <div class="dataItemContent">323567</div>
+            <div class="dataItemContent">{{ result.data.total_transaction }}</div>
             <div class="dataItemTitle">Total transactions</div>
           </div>
           <div class="dataItem">
-            <div class="dataItemContent">5,742</div>
+            <div class="dataItemContent">{{ result.data.total_holders }}</div>
             <div class="dataItemTitle">Total holders</div>
           </div>
           <div class="dataItem">
-            <div class="dataItemContent">55</div>
+            <div class="dataItemContent">{{ result.data.total_ticks }}</div>
             <div class="dataItemTitle">Total ticks</div>
           </div>
           <div class="dataItem">
-            <div class="dataItemContent">485,381 MNT</div>
+            <div class="dataItemContent">{{ result.data.total_volumn }} MNT</div>
             <div class="dataItemTitle">Total volume</div>
           </div>
         </el-col>
@@ -55,7 +67,11 @@ const goTo = (url: string) => {
             information on the blockchain with unmatched simplicity and
             efficiency.
           </div>
-          <img src="../assets/images/start.png" class="startButton" @click="goTo('/explorer')" />
+          <img
+            src="../assets/images/start.png"
+            class="startButton"
+            @click="goTo('/explorer')"
+          />
         </el-col>
       </el-row>
     </div>
@@ -69,7 +85,11 @@ const goTo = (url: string) => {
         information on the blockchain with unmatched simplicity and efficiency.
       </div>
       <div>
-        <img src="../assets/images/start.png" class="startButton" @click="goTo('/explorer')" />
+        <img
+          src="../assets/images/start.png"
+          class="startButton"
+          @click="goTo('/explorer')"
+        />
       </div>
       <el-row>
         <el-col :span="12">

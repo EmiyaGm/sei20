@@ -267,12 +267,12 @@ window.onresize = function () {
                 ><Search /></el-icon
               >Explorer</el-menu-item
             >
-            <!-- <el-menu-item index="Marcketplace" @click="goTo('/mint', 'mint')"
-              >Marcketplace</el-menu-item
+            <!-- <el-menu-item index="Marketplace" @click="goTo('/mint', 'mint')"
+              >Marketplace</el-menu-item
             > -->
             <el-menu-item>
               <div class="comingMenuItem">
-                <div class="comingMenuItemName">Marcketplace</div>
+                <div class="comingMenuItemName">Marketplace</div>
                 <div class="comingMenuItemTip">Coming Soon</div>
               </div>
             </el-menu-item>
@@ -374,7 +374,7 @@ window.onresize = function () {
                 @click="goTo('/explorer', 'explorer')"
                 >Explorer</el-dropdown-item
               >
-              <el-dropdown-item :icon="House"> Marcketplace </el-dropdown-item>
+              <el-dropdown-item :icon="House"> Marketplace </el-dropdown-item>
               <el-dropdown-item :icon="Document"
                 ><a
                   target="_blank"

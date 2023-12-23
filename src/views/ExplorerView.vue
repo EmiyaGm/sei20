@@ -12,24 +12,18 @@ const tickName = ref('')
 
 const tableData = [
   {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+    token: 'seis',
+    deploy_time: '2023-12-22T06:50:48.624Z',
+    progress: 1,
+    holders: 100,
+    transactions: 2000,
   },
   {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+    token: 'seis',
+    deploy_time: '2023-12-22T06:50:48.624Z',
+    progress: 1,
+    holders: 100,
+    transactions: 2000,
   },
 ]
 
@@ -82,9 +76,11 @@ const handleCurrentChange = () => {}
     </div>
     <div class="tableArea">
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="date" label="Date" width="180" />
-        <el-table-column prop="name" label="Name" width="180" />
-        <el-table-column prop="address" label="Address" />
+        <el-table-column prop="token" label="Token" />
+        <el-table-column prop="deploy_time" label="deploy_time" />
+        <el-table-column prop="progress" label="Progress" />
+        <el-table-column prop="holders" label="Holders" />
+        <el-table-column label="Transactions" prop="transactions" />
       </el-table>
     </div>
     <div class="paginationArea">
