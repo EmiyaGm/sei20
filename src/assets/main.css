@@ -8,11 +8,11 @@
   max-width: 100vw;
   min-height: 100vh;
   min-width: 100vw;
-  font-family: Outfit !important;
+  font-family: Vegan Abattoir !important;
 }
 
 .menuDropdown {
-  font-family: Outfit !important;
+  font-family: Vegan Abattoir !important;
 }
 
 .menuContent {
@@ -22,7 +22,7 @@
 .menuItem {
   font-size: 15px !important;
   color: rgba(255, 255, 255, 0.4) !important;
-  font-family: Outfit !important;
+  font-family: Vegan Abattoir !important;
 }
 
 .menuItemActive {
@@ -108,12 +108,15 @@
 }
 
 .el-menu-header > .el-menu-item {
-  border: none !important;
-  font-size: 20px !important;
+  font-size: 16px !important;
   /* color: rgba(255, 255, 255, 0.90) !important; */
   font-weight: 400 !important;
   transition: none !important;
   background: transparent !important;
+}
+
+.el-menu-header > .el-menu-item.is-active {
+  border-color: #ff4011 !important;
 }
 
 .el-menu-header > .el-menu-item:hover {
@@ -156,7 +159,7 @@
 }
 .titleName {
   color: #ffc700;
-  font-family: Outfit;
+  font-family: Vegan Abattoir;
   font-size: 32px;
   font-style: normal;
   font-weight: 800;
@@ -167,17 +170,8 @@
   justify-content: space-between;
 }
 
-.titleNameTwo {
-  color: #ffc700;
-  font-family: Outfit;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-}
-
 .main {
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 160px);
 }
 
 .swap-result-dialog {
@@ -318,4 +312,10 @@
 
 .share-dialog > .el-dialog__body{
   padding: 0px;
+}
+
+.tableArea > .el-table th.el-table__cell {
+  background: transparent;
+  font-size: 14px;
+  color: #616161;
 }

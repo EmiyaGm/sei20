@@ -8,6 +8,9 @@ import {
   ArrowRight,
   HomeFilled,
   SwitchButton,
+  Search,
+  WalletFilled,
+  CaretBottom,
 } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getCosmWasmClient, getQueryClient } from '@sei-js/core'
@@ -38,7 +41,7 @@ const network = ref('atlantic-2')
 
 const backHome = () => {
   router.push('/')
-  activeName.value = 'mint'
+  activeName.value = 'home'
 }
 
 const openAccountSetting = () => {
@@ -256,11 +259,11 @@ onMounted(() => {
   setTimeout(() => {
     hideLoading.value = true
   }, 3000)
-  document.body.style.setProperty('--el-menu-active-color', '#FFF')
   document.body.style.setProperty(
     '--el-text-color-placeholder',
     'rgba(255, 255, 255, 0.8)',
   )
+  document.body.style.setProperty('--el-color-primary', '#ff4011')
 })
 </script>
 
@@ -272,41 +275,32 @@ onMounted(() => {
     <!-- <div class="topTip" v-if="account">You are on Sei testnet</div> -->
     <div class="header">
       <div class="front">
-        <div class="logo-text">SEI-20</div>
-        <!-- <img src="./assets/images/logo.svg" class="brand-logo" @click="backHome" /> -->
+        <img
+          src="./assets/images/logo.png"
+          class="brand-logo"
+          @click="backHome"
+        />
         <div class="menu">
           <el-menu
-            :default-active="activeName"
+            v-bind:default-active="activeName"
             class="el-menu-header"
             mode="horizontal"
             :ellipsis="false"
-            active-text-color="#FFC700"
-            text-color="rgba(255, 255, 255, 0.9)"
+            active-text-color="#C5C5C5"
+            text-color="#888888"
           >
-            <el-menu-item index="mint" @click="goTo('/mint', 'mint')"
-              >Mint</el-menu-item
+            <div style="flex-grow: 1" />
+            <el-menu-item
+              index="Explorer"
+              @click="goTo('/explorer', 'Explorer')"
+              ><el-icon :style="activeName === 'Explorer' ? 'color: #ff4011' : ''"><Search /></el-icon>Explorer</el-menu-item
             >
+            <!-- <el-menu-item index="Marcketplace" @click="goTo('/mint', 'mint')"
+              >Marcketplace</el-menu-item
+            > -->
             <el-menu-item>
               <div class="comingMenuItem">
-                <div class="comingMenuItemName">Holders</div>
-                <div class="comingMenuItemTip">Coming Soon</div>
-              </div>
-            </el-menu-item>
-            <el-menu-item>
-              <div class="comingMenuItem">
-                <div class="comingMenuItemName">Market</div>
-                <div class="comingMenuItemTip">Coming Soon</div>
-              </div>
-            </el-menu-item>
-            <el-menu-item>
-              <div class="comingMenuItem">
-                <div class="comingMenuItemName">Explorer</div>
-                <div class="comingMenuItemTip">Coming Soon</div>
-              </div>
-            </el-menu-item>
-            <el-menu-item>
-              <div class="comingMenuItem">
-                <div class="comingMenuItemName">Assets</div>
+                <div class="comingMenuItemName">Marcketplace</div>
                 <div class="comingMenuItemTip">Coming Soon</div>
               </div>
             </el-menu-item>
@@ -334,29 +328,38 @@ onMounted(() => {
           />
         </el-select>
       </div> -->
-      <div class="account" v-if="account">
-        <el-icon><wallet /></el-icon>
-        <el-dropdown>
-          <div style="cursor: pointer; color: #000; outline: none">
+      <el-dropdown>
+        <div class="account" v-if="account" style="outline: none">
+          <div
+            style="cursor: pointer; color: #f0f4f4; outline: none"
+            class="accountText"
+          >
             {{ account.substr(0, 5) }}...{{
               account.substr(account.length - 6, 6)
             }}
           </div>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item :icon="HomeFilled"
-                >My Sei20scriptions</el-dropdown-item
-              >
-              <el-dropdown-item :icon="CopyDocument" @click="copy">
-                Copy Address
-              </el-dropdown-item>
-              <el-dropdown-item :icon="SwitchButton" @click="disconnect">Logout</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
+          <el-icon><CaretBottom /></el-icon>
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item :icon="HomeFilled"
+              >My Sei20scriptions</el-dropdown-item
+            >
+            <el-dropdown-item :icon="CopyDocument" @click="copy">
+              Copy Address
+            </el-dropdown-item>
+            <el-dropdown-item :icon="SwitchButton" @click="disconnect"
+              >Logout</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+
       <div class="connect" @click="openConnectWallet" v-if="!account">
-        Connect
+        <el-icon style="color: rgba(255, 64, 17, 1)" class="connectIcon"
+          ><WalletFilled
+        /></el-icon>
+        <div>Connect Wallet</div>
       </div>
     </div>
     <!-- <canvas ref="bgCanvas" class="bgCanvas"></canvas> -->
@@ -365,7 +368,7 @@ onMounted(() => {
       :openConnectWallet="openConnectWallet"
     />
     <div class="footer">
-      <div class="footer-logo">@ 2023 sei20.xyz</div>
+      <div class="footer-logo">© 2023 Sei20. All rights reserved.</div>
       <!-- <div class="footer-resources">
         <div>
           <a
@@ -383,7 +386,7 @@ onMounted(() => {
             target="_blank"
             style="color: rgba(255, 255, 255, 0.9); text-decoration: none"
           >
-            Twitter
+            <img src="./assets/images/x.svg" class="xSvg" />
           </a>
         </div>
       </div>
@@ -464,7 +467,7 @@ onMounted(() => {
   height: 100vh;
   top: 0;
   right: 0;
-  z-index: 2;
+  z-index: 10;
 }
 
 .bgCanvas {
@@ -477,43 +480,58 @@ onMounted(() => {
 }
 
 .header {
-  padding: 20px 284px;
+  margin: 0px 100px;
+  padding: 19px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 20px;
-  font-family: Outfit;
+  font-size: 16px;
+  font-family: Vegan Abattoir;
   pointer-events: fill;
   position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .connect {
-  width: 159.13px;
-  height: 40.457px;
-  border-radius: 7px;
-  background: #ffc700;
+  width: 181.24px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
   user-select: none;
+  color: #f0f4f4;
+  font-family: Space Grotesk;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
+.connectIcon {
+  font-size: 18px;
+  margin-right: 11px;
 }
 
 .account {
-  width: 183px;
-  height: 39px;
-  border-radius: 7px;
-  background: #ffc700;
+  width: 181.24px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
+  color: #f0f4f4;
+  font-family: Space Grotesk;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   user-select: none;
 }
-.account {
-  font-size: 14px;
+.accountText {
+  margin-right: 17px;
 }
 
 .divide {
@@ -526,8 +544,8 @@ onMounted(() => {
 
 /** fit mobile */
 .brand-logo {
-  width: 89px;
-  height: 37px;
+  width: 160.702px;
+  height: 40px;
   cursor: pointer;
 }
 .menu {
@@ -614,19 +632,26 @@ onMounted(() => {
 }
 
 .footer {
-  padding: 24px 60px;
+  margin: 0px 100px;
+  padding-top: 16px;
+  padding-bottom: 25px;
   color: rgba(255, 255, 255, 0.9);
-  font-family: Outfit;
-  font-size: 20px;
+  font-family: Vegan Abattoir;
   display: flex;
   align-items: flex-start;
   pointer-events: fill;
-  border-top: 2px solid rgba(255, 255, 255, 0.4);
   justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-logo {
-  margin-right: 110px;
+  color: #616161;
+
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .footer-link {
@@ -744,7 +769,7 @@ onMounted(() => {
 
 .lp-menu-item-title {
   color: #000;
-  font-family: Outfit;
+  font-family: Vegan Abattoir;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -753,7 +778,7 @@ onMounted(() => {
 }
 .lp-menu-item-content {
   color: rgba(0, 0, 0, 0.4);
-  font-family: Outfit;
+  font-family: Vegan Abattoir;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -772,5 +797,10 @@ onMounted(() => {
   width: 19.5px;
   height: 16px;
   margin-right: 13px;
+}
+
+.xSvg {
+  width: 16px;
+  height: 17px;
 }
 </style>

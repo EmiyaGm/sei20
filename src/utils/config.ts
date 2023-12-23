@@ -1,6 +1,7 @@
 export const REST_URL = 'https://sei-api.polkachu.com/'
 export const RPC_URL = 'https://sei-rpc.polkachu.com/'
 export const NETWORK = 'pacific-1'
+export const HTTP_URL = ''
 
 export interface Token {
   decimals: number,

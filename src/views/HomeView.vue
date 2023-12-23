@@ -12,7 +12,7 @@ import {
 } from '@sei-js/core'
 import { calculateFee } from '@cosmjs/stargate'
 import { NETWORK, RPC_URL } from '../utils/config'
-import { event } from 'vue-gtag';
+import { event } from 'vue-gtag'
 
 const props = defineProps<{
   openConnectWallet: Function
@@ -121,31 +121,39 @@ const connectWallet = () => {
 
 <template>
   <div class="main">
-    <div class="drawerContent">
-      <div class="swapContent">
-        <WaveFont></WaveFont>
-        <TextAnimation></TextAnimation>
-        <LineCombination></LineCombination>
-        <div v-if="address" class="swapButtonDiv">
-          <BirdButton @click="doMint"></BirdButton>
-        </div>
-        <div v-else class="connectWallet" @click="connectWallet">
-          <div style="display: flex; align-items: center">
-            <div class="noAddressIcon">
-              <el-icon><Wallet /></el-icon>
-            </div>
-            <div style="color: white">
-              <div class="noAddressTipOne">Getting Started</div>
-              <div class="noAddressTipTwo">
-                Connect wallet to trade and explore more
-              </div>
-            </div>
+    <div class="homeContent">
+      <el-row>
+        <el-col :span="6" class="leftPart">
+          <div class="dataItem">
+            <div class="dataItemContent">323567</div>
+            <div class="dataItemTitle">Total transactions</div>
           </div>
-          <div class="noAddressArrow">
-            <el-icon><ArrowRight /></el-icon>
+          <div class="dataItem">
+            <div class="dataItemContent">5,742</div>
+            <div class="dataItemTitle">Total holders</div>
           </div>
-        </div>
-      </div>
+          <div class="dataItem">
+            <div class="dataItemContent">55</div>
+            <div class="dataItemTitle">Total ticks</div>
+          </div>
+          <div class="dataItem">
+            <div class="dataItemContent">485,381 MNT</div>
+            <div class="dataItemTitle">Total volume</div>
+          </div>
+        </el-col>
+        <el-col :span="18" class="rightPart">
+          <div class="homeTitle">The first sei-20 inscription</div>
+          <div class="homeDesc">
+            Discover a platform where advanced blockchain capabilities meet
+            unparalleled ease of use. Our SEI Inscription Protocol provides a
+            seamless blend of smooth interaction and professional trading
+            experience, enabling users to permanently record a wide array of
+            information on the blockchain with unmatched simplicity and
+            efficiency.
+          </div>
+          <img src="../assets/images/start.png" class="startButton" />
+        </el-col>
+      </el-row>
     </div>
     <el-dialog
       v-model="dialogMintResultLoadingVisible"
@@ -245,122 +253,66 @@ const connectWallet = () => {
   </div>
 </template>
 
-<style scoped>
-.input-error {
-  background: rgba(255, 106, 106, 0.2) !important;
-}
-.settingArea {
-  padding: 32px 20px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 0px 1px 20px 0px rgba(0, 0, 0, 0.13);
-  backdrop-filter: blur(24px);
-}
-.settingAreaTitle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 9px;
-}
-.silppageTitle {
-  color: #fff;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.silppageContent {
-  font-size: 14px;
-}
-.silppageIcon {
-  width: 19.5px;
-  height: 16px;
-  margin-right: 15px;
-}
-.swapContentTitle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 400;
-  margin-bottom: 18px;
-}
-.drawerContent {
+<style scoped lang="scss">
+.homeContent {
   margin: 0 auto;
   padding: 0px 100px;
-}
-
-.el-icon--right {
-  font-size: 14px;
-}
-
-.tab-area {
-  display: flex;
-  align-items: center;
-  border-radius: 11px;
-  border: 0.5px solid rgba(172, 206, 255, 0.6);
-  padding: 0px 10px;
-  justify-content: space-between;
-}
-.tab-item {
-  width: 86px;
-  height: 35px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: 400;
-  cursor: pointer;
-  transition: 0.3s;
-  color: #acceff;
-  position: relative;
-}
-
-.tab-item:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.tab-item-input {
-  height: 35px;
-  width: 86px;
-  background: transparent;
-  outline: none;
-  border-radius: 10px;
-  color: black;
-  border: none;
-}
-
-.tab-item-active {
-  background: #e5edf9;
-  color: black;
-}
-
-.tab-item-active > .tab-item-input {
-  border: 0.5px solid rgba(172, 206, 255, 0.6);
-}
-
-.balanaButton {
-  border: 1px solid #000;
-  user-select: none;
-  border-radius: 14px;
-  backdrop-filter: blur(24px);
-  font-size: 20px;
-  font-weight: 600;
-  height: 56px;
-  width: 574px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
-  /* background: white; */
-  color: #000;
-}
-.percentDiv {
-  position: absolute;
-  top: 5px;
-  right: 0;
+  .leftPart {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: calc(100vh - 160px);
+    padding: 54px 0px 0px 8.72px;
+    .dataItem {
+      margin-bottom: 64px;
+      .dataItemTitle {
+        color: #616161;
+        font-family: Space Grotesk;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .dataItemContent {
+        color: #fff;
+        font-family: Space Grotesk;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+  .rightPart {
+    min-height: calc(100vh - 160px);
+    padding: 38px 0px 0px 67px;
+    .homeTitle {
+      color: #fff;
+      font-family: Space Grotesk;
+      font-size: 100px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 111%; /* 111px */
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .homeDesc {
+      color: #fff;
+      font-family: Space Grotesk;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-bottom: 40px;
+    }
+    .startButton {
+      width: 240px;
+      height: 67px;
+      border-radius: 66px;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .startButton:hover {
+        scale: 1.1;
+    }
+  }
 }
 </style>
