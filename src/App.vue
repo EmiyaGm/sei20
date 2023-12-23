@@ -11,10 +11,13 @@ import {
   Search,
   WalletFilled,
   CaretBottom,
+  Menu,
+  House,
+  Document
 } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getCosmWasmClient, getQueryClient } from '@sei-js/core'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import AudioLoading from './components/AudioLoading.vue'
 import { NETWORK, REST_URL, RPC_URL } from './utils/config'
@@ -27,7 +30,7 @@ const bgCanvas = ref(null)
 
 const hideLoading = ref(false)
 
-const activeName = ref('mint')
+const activeName = ref('home')
 
 const account = ref('')
 
@@ -36,6 +39,10 @@ const dialogAccountVisible = ref(false)
 const dialogVisible = ref(false)
 
 const router = useRouter()
+
+watch(router.currentRoute, (newValue) => {
+  activeName.value = newValue.name ? newValue.name.toString() : 'home'
+})
 
 const network = ref('atlantic-2')
 
@@ -73,25 +80,6 @@ const connectFinWallet = async () => {
   } else {
     if (window.fin.experimentalSuggestChain) {
       try {
-        // await window.fin.experimentalSuggestChain({
-        //   chainId: 'pacific-1',
-        //   chainName: 'Sei Mainnet',
-        //   addressPrefix: 'sei',
-        //   rpcUrl: 'https://sei-rpc.polkachu.com/',
-        //   httpUrl: 'https://sei-api.polkachu.com/',
-        //   feeToken: 'usei',
-        //   stakingToken: 'usei',
-        //   coinMap: {
-        //     usei: { denom: 'SEI', fractionalDigits: 6 }
-        //   },
-        //   gasPrice: 0.025,
-        //   fees: {
-        //     upload: 1500000,
-        //     init: 500000,
-        //     exec: 200000
-        //   }
-        // })
-
         await window.fin.enable(NETWORK)
         const offlineSigner = window.fin.getOfflineSigner(NETWORK)
         const accounts = await offlineSigner.getAccounts()
@@ -137,25 +125,6 @@ const connectCompassWallet = async () => {
   } else {
     if (window.compass.experimentalSuggestChain) {
       try {
-        // await window.compass.experimentalSuggestChain({
-        //   chainId: 'pacific-1',
-        //   chainName: 'Sei Mainnet',
-        //   addressPrefix: 'sei',
-        //   rpcUrl: 'https://sei-rpc.polkachu.com/',
-        //   httpUrl: 'https://sei-api.polkachu.com/',
-        //   feeToken: 'usei',
-        //   stakingToken: 'usei',
-        //   coinMap: {
-        //     usei: { denom: 'SEI', fractionalDigits: 6 }
-        //   },
-        //   gasPrice: 0.025,
-        //   fees: {
-        //     upload: 1500000,
-        //     init: 500000,
-        //     exec: 200000
-        //   }
-        // })
-
         await window.compass.enable(NETWORK)
         const offlineSigner = window.compass.getOfflineSigner(NETWORK)
         const accounts = await offlineSigner.getAccounts()
@@ -193,25 +162,6 @@ const connectWallet = async () => {
   } else {
     if (window.keplr.experimentalSuggestChain) {
       try {
-        // await window.keplr.experimentalSuggestChain({
-        //   chainId: 'pacific-1',
-        //   chainName: 'Sei Mainnet',
-        //   addressPrefix: 'sei',
-        //   rpcUrl: 'https://sei-rpc.polkachu.com/',
-        //   httpUrl: 'https://sei-api.polkachu.com/',
-        //   feeToken: 'usei',
-        //   stakingToken: 'usei',
-        //   coinMap: {
-        //     usei: { denom: 'SEI', fractionalDigits: 6 }
-        //   },
-        //   gasPrice: 0.025,
-        //   fees: {
-        //     upload: 1500000,
-        //     init: 500000,
-        //     exec: 200000
-        //   }
-        // })
-
         await window.keplr.enable(NETWORK)
         const offlineSigner = window.getOfflineSigner(NETWORK)
         const accounts = await offlineSigner.getAccounts()
@@ -265,15 +215,34 @@ onMounted(() => {
   )
   document.body.style.setProperty('--el-color-primary', '#ff4011')
 })
+
+const isMobile = ref(false)
+
+const result = window.matchMedia('only screen and (max-width: 575px)')
+const cliWidth = document.documentElement.clientWidth
+if (result.matches) {
+  isMobile.value = true
+  document.documentElement.style.fontSize = 100 * (cliWidth / 430) + 'px'
+}
+window.onresize = function () {
+  const cliWidth = document.documentElement.clientWidth
+  const result = window.matchMedia('only screen and (max-width: 575px)')
+  if (result.matches) {
+    document.documentElement.style.fontSize = 100 * (cliWidth / 430) + 'px'
+    isMobile.value = true
+  } else {
+    isMobile.value = false
+  }
+}
 </script>
 
 <template>
-  <div class="appDiv">
+  <div class="appDiv" :class="activeName === 'home' ? 'appDivBg' : ''">
     <div class="loading" v-if="!hideLoading">
       <AudioLoading style="height: 100%" />
     </div>
     <!-- <div class="topTip" v-if="account">You are on Sei testnet</div> -->
-    <div class="header">
+    <div class="header" v-if="!isMobile">
       <div class="front">
         <img
           src="./assets/images/logo.png"
@@ -291,9 +260,12 @@ onMounted(() => {
           >
             <div style="flex-grow: 1" />
             <el-menu-item
-              index="Explorer"
-              @click="goTo('/explorer', 'Explorer')"
-              ><el-icon :style="activeName === 'Explorer' ? 'color: #ff4011' : ''"><Search /></el-icon>Explorer</el-menu-item
+              index="explorer"
+              @click="goTo('/explorer', 'explorer')"
+              ><el-icon
+                :style="activeName === 'explorer' ? 'color: #ff4011' : ''"
+                ><Search /></el-icon
+              >Explorer</el-menu-item
             >
             <!-- <el-menu-item index="Marcketplace" @click="goTo('/mint', 'mint')"
               >Marcketplace</el-menu-item
@@ -315,21 +287,8 @@ onMounted(() => {
           </el-menu>
         </div>
       </div>
-      <!-- <div class="fucent" @click="goToFucent">Faucet</div> -->
-      <!-- <div class="" style="width: 140px; margin-right: 10px;">
-        <el-select v-model="network" class="m-2" placeholder="Select" size="large" effect="light">
-          <el-option
-            label="Sei testnet"
-            value="atlantic-2"
-          />
-          <el-option
-            label="Sei mainnet"
-            value="pacific-1"
-          />
-        </el-select>
-      </div> -->
-      <el-dropdown>
-        <div class="account" v-if="account" style="outline: none">
+      <el-dropdown v-if="account">
+        <div class="account" style="outline: none">
           <div
             style="cursor: pointer; color: #f0f4f4; outline: none"
             class="accountText"
@@ -342,8 +301,8 @@ onMounted(() => {
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item :icon="HomeFilled"
-              >My Sei20scriptions</el-dropdown-item
+            <el-dropdown-item :icon="HomeFilled" @click="goTo('/my', 'My')"
+              >My Assets</el-dropdown-item
             >
             <el-dropdown-item :icon="CopyDocument" @click="copy">
               Copy Address
@@ -362,24 +321,86 @@ onMounted(() => {
         <div>Connect Wallet</div>
       </div>
     </div>
-    <!-- <canvas ref="bgCanvas" class="bgCanvas"></canvas> -->
+    <div class="headerMobile" v-else>
+      <div>
+        <img
+          src="./assets/images/logo.png"
+          class="brand-logo-mobile"
+          @click="backHome"
+        />
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center">
+        <div class="connectMobile" @click="openConnectWallet" v-if="!account">
+          <el-icon style="color: rgba(255, 64, 17, 1)" class="connectIconMobile"
+            ><WalletFilled
+          /></el-icon>
+        </div>
+        <el-dropdown v-if="account">
+          <div class="account" style="outline: none">
+            <div
+              style="cursor: pointer; color: #f0f4f4; outline: none"
+              class="accountText"
+            >
+              {{ account.substr(0, 5) }}...{{
+                account.substr(account.length - 6, 6)
+              }}
+            </div>
+            <el-icon><CaretBottom /></el-icon>
+          </div>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item :icon="HomeFilled" @click="goTo('/my', 'My')"
+                >My Assets</el-dropdown-item
+              >
+              <el-dropdown-item :icon="CopyDocument" @click="copy">
+                Copy Address
+              </el-dropdown-item>
+              <el-dropdown-item :icon="SwitchButton" @click="disconnect"
+                >Logout</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+        <el-dropdown>
+          <div class="connectMobile">
+            <el-icon style="color: #ffffff" class="connectIconMobile"
+              ><Menu
+            /></el-icon>
+          </div>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item
+                :icon="Search"
+                @click="goTo('/explorer', 'explorer')"
+                >Explorer</el-dropdown-item
+              >
+              <el-dropdown-item :icon="House"> Marcketplace </el-dropdown-item>
+              <el-dropdown-item :icon="Document"
+                ><a
+                  target="_blank"
+                  href="https://sei-20.gitbook.io/sei-20/"
+                  style="text-decoration: none;color: #ffffff"
+                  >Doc</a
+                ></el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </div>
     <RouterView
       :hideLoading="hideLoading"
       :openConnectWallet="openConnectWallet"
+      :isMobile="isMobile"
     />
-    <div class="footer">
+    <div class="footer" v-if="!isMobile">
+      <img
+        src="./assets/images/background/footerBottom.png"
+        class="footerBottom"
+        v-if="activeName === 'home'"
+      />
       <div class="footer-logo">© 2023 Sei20. All rights reserved.</div>
-      <!-- <div class="footer-resources">
-        <div>
-          <a
-            target="_blank"
-            style="color: rgba(255, 255, 255, 0.9); text-decoration: none"
-            >Doc</a
-          >
-        </div>
-      </div> -->
       <div>
-        <!-- <div style="color: rgba(255, 255, 255, 0.4)">Community</div> -->
         <div>
           <a
             href="https://twitter.com/Sei20_xyz"
@@ -390,6 +411,18 @@ onMounted(() => {
           </a>
         </div>
       </div>
+    </div>
+    <div class="footerMobile" v-else>
+      <div class="footerMobileTwitter">
+        <a
+          href="https://twitter.com/Sei20_xyz"
+          target="_blank"
+          style="color: rgba(255, 255, 255, 0.9); text-decoration: none"
+        >
+          <img src="./assets/images/x.svg" class="xSvgMobile" />
+        </a>
+      </div>
+      <div class="footer-logo">© 2023 Sei20. All rights reserved.</div>
     </div>
     <el-dialog
       v-model="dialogVisible"
@@ -457,8 +490,13 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   position: relative;
-  /* background: url('./assets/images/background.svg') 100% 100% no-repeat; */
   overflow: auto;
+}
+
+.appDivBg {
+  background: url('./assets/images/background/rightBottom.png') no-repeat;
+  background-size: 722px 645px;
+  background-position: right bottom;
 }
 
 .loading {
@@ -491,6 +529,37 @@ onMounted(() => {
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+.headerMobile {
+  margin: 0px 24px;
+  padding: 25px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-family: Vegan Abattoir;
+  pointer-events: fill;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.connectMobile {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: #f0f4f4;
+  font-family: Space Grotesk;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  outline: none;
+  margin-left: 16px;
+}
 
 .connect {
   width: 181.24px;
@@ -511,6 +580,10 @@ onMounted(() => {
 .connectIcon {
   font-size: 18px;
   margin-right: 11px;
+}
+
+.connectIconMobile {
+  font-size: 18px;
 }
 
 .account {
@@ -548,6 +621,13 @@ onMounted(() => {
   height: 40px;
   cursor: pointer;
 }
+
+.brand-logo-mobile {
+  width: 128.561px;
+  height: 32px;
+  cursor: pointer;
+}
+
 .menu {
   display: none;
   position: absolute;
@@ -642,6 +722,39 @@ onMounted(() => {
   pointer-events: fill;
   justify-content: space-between;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+.footerMobile {
+  margin: 0px 24px;
+  padding-top: 16px;
+  padding-bottom: 25px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: Vegan Abattoir;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: fill;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  display: flex;
+}
+.footerMobileTwitter {
+  position: absolute;
+  left: 0px;
+  top: -50px;
+}
+
+.xSvgMobile {
+  width: 32px;
+  height: 32px;
+}
+
+.footerBottom {
+  position: absolute;
+  bottom: 0px;
+  left: 40%;
+  width: 148px;
+  height: 148px;
 }
 
 .footer-logo {

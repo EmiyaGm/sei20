@@ -66,7 +66,8 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background-image: repeating-linear-gradient(
+  background: #111;
+  /* background-image: repeating-linear-gradient(
       107deg,
       hsla(0, 0%, 5%, 0.15),
       hsla(0, 0%, 5%, 0.15) 0,
@@ -118,7 +119,7 @@ body {
       hsla(0, 0%, 5%, 0.15) 0,
       hsla(0, 0%, 5%, 0.15) 7px
     ),
-    linear-gradient(90deg, #2d2d2d, #2d2d2d);
+    linear-gradient(90deg, #2d2d2d, #2d2d2d); */
   transition:
     color 0.5s,
     background-color 0.5s;
